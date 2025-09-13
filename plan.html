@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Trabajo Detallado - Sistema de Gestión de Inventarios</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            margin: 10px 0 5px 0;
+            opacity: 0.95;
+            font-size: 16px;
+        }
+        
+        .project-overview {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .project-overview h2 {
+            color: #667eea;
+            margin-top: 0;
+            font-size: 22px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .info-card h3 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+        
+        .info-card ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .info-card li {
+            margin-bottom: 8px;
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            margin-bottom: 30px;
+        }
+        
+        .table-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .table-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        th {
+            background: #f8f9fa;
+            color: #333;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #667eea;
+            position: sticky;
+            top: 0;
+        }
+        
+        td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        
+        tr:hover {
+            background-color: #e3f2fd;
+            transform: scale(1.01);
+            transition: all 0.3s ease;
+        }
+        
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+        
+        .completado {
+            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            color: white;
+            box-shadow: 0 2px 4px rgba(76,175,80,0.3);
+        }
+        
+        .proceso {
+            background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+            color: white;
+            box-shadow: 0 2px 4px rgba(255,152,0,0.3);
+        }
+        
+        .pendiente {
+            background: linear-gradient(135deg, #f44336 0%, #ef5350 100%);
+            color: white;
+            box-shadow: 0 2px 4px rgba(244,67,54,0.3);
+        }
+        
+        .phase-header {
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .phase-title {
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+        .sprint-cell {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            font-weight: bold;
+            color: #1976d2;
+            text-align: center;
+        }
+        
+        .deliverables-list {
+            background: #f8f9ff;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .deliverables-list ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+        
+        .deliverables-list li {
+            margin-bottom: 4px;
+            font-size: 12px;
+            color:black
+        }
+        
+        .timeline-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            margin: 30px 0;
+        }
+        
+        .timeline-header {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 25px;
+        }
+        
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            background: #f8f9ff;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            background: #e3f2fd;
+            transform: translateX(10px);
+        }
+        
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .timeline-content {
+            flex-grow: 1;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-description {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .progress-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            flex-grow: 1;
+            margin: 0 15px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50 0%, #66bb6a 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .risk-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff9800;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .risk-high { border-left-color: #f44336; }
+        .risk-medium { border-left-color: #ff9800; }
+        .risk-low { border-left-color: #4caf50; }
+        
+        .budget-breakdown {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .budget-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 18px;
+            color: #667eea;
+        }
+        
+        .communications-plan {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .communication-item {
+            background: #f8f9ff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .footer-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .timeline-dot {
+                margin-bottom: 10px;
+            }
+        }
+        
+        .accordion {
+            background: white;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background: #667eea;
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background: #5a6fd8;
+        }
+        
+        .accordion-content {
+            padding: 20px;
+            display: block;
+        }
+        
+        .methodology-detail {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PLAN DE TRABAJO DETALLADO</h1>
+        <p>DESARROLLO DE UN SISTEMA DE GESTIÓN DE INVENTARIOS PARA MINISÚPER COMUNITARIO LA UNIÓN CON SISTEMAS FRAGMENTADOS</p>
+        <p><strong>Instituto Tecnológico de Oaxaca</strong></p>
+        <p><strong>Fecha de elaboración:</strong> 13 de septiembre de 2025</p>
+    </div>
+
+    <div class="project-overview">
+        <h2>Resumen Ejecutivo del Proyecto</h2>
+        <p><strong>Problemática Identificada:</strong> El Minisúper La Unión, ubicado en la colonia Unión 216 de Oaxaca de Juárez, maneja su inventario de forma manual utilizando cuadernos, hojas sueltas y hojas de cálculo desorganizadas. Esta metodología obsoleta genera errores frecuentes, dificultades en el seguimiento de productos perecederos, información desactualizada y problemas en la toma de decisiones de reabastecimiento.</p>
+        
+        <p><strong>Solución Propuesta:</strong> Desarrollo de un sistema integral de gestión de inventarios utilizando tecnologías Java y PostgreSQL, implementado bajo la metodología Extreme Programming (XP) para asegurar la participación activa del cliente y la adaptabilidad a cambios en los requisitos.</p>
+        
+        <p><strong>Impacto Esperado:</strong> Modernización completa de la gestión de inventarios, reducción de errores operativos, mejora en la toma de decisiones, optimización del capital de trabajo y fortalecimiento de la competitividad del negocio en el mercado local.</p>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Información del Proyecto</h3>
+            <ul>
+                <li><strong>Institución:</strong> Instituto Tecnológico de Oaxaca</li>
+                <li><strong>Carrera:</strong> Ingeniería en Sistemas Computacionales</li>
+                <li><strong>Materia:</strong> Taller de Investigación II</li>
+                <li><strong>Profesor:</strong> Otilia Pérez López</li>
+                <li><strong>Grupo:</strong> 8SU - Semestre 6</li>
+                <li><strong>Modalidad:</strong> Investigación Aplicada</li>
+            </ul>
+        </div>
+        
+        <div class="info-card">
+            <h3>Equipo de Desarrollo</h3>
+            <ul>
+                <li><strong>Almaraz Vásquez Alonso David</strong>
+                    <br>Rol: Líder de Proyecto y Desarrollador Backend
+                    <br>Especialidad: Análisis de sistemas y base de datos</li>
+                <li><strong>Martínez Guzmán Julián</strong>
+                    <br>Rol: Desarrollador Frontend y UX
+                    <br>Especialidad: Interfaces de usuario y usabilidad</li>
+                <li><strong>Díaz Zarate Uriel</strong>
+                    <br>Rol: Analista de Calidad y Documentación
+                    <br>Especialidad: Testing y documentación técnica</li>
+            </ul>
+        </div>
+        
+        <div class="info-card">
+            <h3>Stakeholders del Proyecto</h3>
+            <ul>
+                <li><strong>Cliente Principal:</strong> Propietarios del Minisúper La Unión</li>
+                <li><strong>Usuarios Finales:</strong> Empleados y cajeros del minisúper</li>
+                <li><strong>Supervisor Académico:</strong> Otilia Pérez López</li>
+                <li><strong>Beneficiarios Indirectos:</strong> Clientes del minisúper</li>
+                <li><strong>Comunidad Académica:</strong> Estudiantes de sistemas</li>
+            </ul>
+        </div>
+        
+        <div class="info-card">
+            <h3>Objetivos del Proyecto</h3>
+            <ul>
+                <li><strong>General:</strong> Desarrollar un sistema automatizado e integrado de gestión de inventarios</li>
+                <li><strong>Específico 1:</strong> Identificar y mapear los procesos actuales del negocio</li>
+                <li><strong>Específico 2:</strong> Aplicar la metodología Extreme Programming (XP)</li>
+                <li><strong>Específico 3:</strong> Crear documentación técnica y de usuario completa</li>
+                <li><strong>Específico 4:</strong> Capacitar al personal en el uso del sistema</li>
+            </ul>
+        </div>
+        
+        <div class="info-card">
+            <h3>Tecnologías y Herramientas</h3>
+            <ul>
+                <li><strong>Lenguaje Backend:</strong> Java 17 LTS</li>
+                <li><strong>Base de Datos:</strong> PostgreSQL 15</li>
+                <li><strong>Framework GUI:</strong> Java Swing/JavaFX</li>
+                <li><strong>IDE:</strong> NetBeans 18/Eclipse</li>
+                <li><strong>Control de Versiones:</strong> Git + GitHub</li>
+                <li><strong>Testing:</strong> JUnit 5</li>
+                <li><strong>Documentación:</strong> Javadoc + Markdown</li>
+            </ul>
+        </div>
+        
+        <div class="info-card">
+            <h3>Metodología de Desarrollo</h3>
+            <ul>
+                <li><strong>Marco de Trabajo:</strong> Extreme Programming (XP)</li>
+                <li><strong>Duración de Sprints:</strong> 1 semana cada uno</li>
+                <li><strong>Total de Sprints:</strong> 13 iteraciones</li>
+                <li><strong>Valores XP:</strong> Comunicación, Simplicidad, Retroalimentación, Coraje, Respeto</li>
+                <li><strong>Prácticas:</strong> Programación en parejas, TDD, Refactoring continuo</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <h2 style="color: #667eea; text-align: center; margin-bottom: 25px;">Progreso del Proyecto por Fases</h2>
+        
+        <div class="progress-item">
+            <span><strong>Fase 1: Requisitos y Análisis</strong></span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 25%"></div>
+            </div>
+            <span>25% (1/4 sprints)</span>
+        </div>
+        
+        <div class="progress-item">
+            <span><strong>Fase 2: Desarrollo y Pruebas</strong></span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span>0% (0/5 sprints)</span>
+        </div>
+        
+        <div class="progress-item">
+            <span><strong>Fase 3: Implementación y Documentación</strong></span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <span>0% (0/4 sprints)</span>
+        </div>
+        
+        <div class="progress-item">
+            <span><strong>Progreso Total del Proyecto</strong></span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 15%"></div>
+            </div>
+            <span>15% (2/13 sprints)</span>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-header">
+            <h2>Cronograma Detallado de Actividades</h2>
+            <p>13 Sprints distribuidos en 3 meses (Septiembre - Noviembre 2025)</p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 12%">Fase</th>
+                    <th style="width: 8%">Sprint</th>
+                    <th style="width: 15%">Responsable Principal</th>
+                    <th style="width: 25%">Descripción Detallada de Actividades</th>
+                    <th style="width: 15%">Entregables Específicos</th>
+                    <th style="width: 8%">Inicio</th>
+                    <th style="width: 8%">Fin</th>
+                    <th style="width: 5%">Días</th>
+                    <th style="width: 8%">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- FASE 1: REQUISITOS Y ANÁLISIS -->
+                <tr class="phase-header">
+                    <td rowspan="4"><strong>FASE 1:<br>REQUISITOS Y ANÁLISIS</strong><br><small>Semanas 1-4</small></td>
+                    <td class="sprint-cell">Sprint 1</td>
+                    <td><strong>Alonso David</strong><br><small>Líder de Análisis</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Visita inicial al Minisúper La Unión<br>
+                        • Entrevistas estructuradas con propietarios<br>
+                        • Observación directa de procesos actuales<br>
+                        • Identificación de stakeholders clave<br>
+                        • Análisis del sistema manual actual<br>
+                        • Documentación de problemáticas identificadas
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Acta de inicio del proyecto</li>
+                                <li>Transcripciones de entrevistas</li>
+                                <li>Diagrama de procesos actuales</li>
+                                <li>Lista de stakeholders</li>
+                                <li>Informe de problemas identificados</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>02/09/25</td>
+                    <td>06/09/25</td>
+                    <td>5</td>
+                    <td><span class="status completado">COMPLETADO</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 2</td>
+                    <td><strong>Julián Martínez</strong><br><small>Analista Funcional</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Análisis detallado de requisitos funcionales<br>
+                        • Definición de requisitos no funcionales<br>
+                        • Evaluación y selección del stack tecnológico<br>
+                        • Análisis de viabilidad técnica<br>
+                        • Benchmarking con sistemas similares<br>
+                        • Validación inicial con el cliente
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Documento de requisitos funcionales</li>
+                                <li>Especificación de requisitos no funcionales</li>
+                                <li>Justificación técnica Java/PostgreSQL</li>
+                                <li>Matriz de trazabilidad de requisitos</li>
+                                <li>Acta de validación con cliente</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>09/09/25</td>
+                    <td>13/09/25</td>
+                    <td>5</td>
+                    <td><span class="status proceso">EN PROCESO</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 3</td>
+                    <td><strong>Uriel Díaz</strong><br><small>Arquitecto de Sistema</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Creación de historias de usuario detalladas<br>
+                        • Diseño de arquitectura del sistema<br>
+                        • Definición de casos de uso principales<br>
+                        • Prototipado de interfaces clave<br>
+                        • Planificación de la arquitectura de datos<br>
+                        • Revisión técnica con el equipo
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Backlog de historias de usuario</li>
+                                <li>Diagrama de arquitectura del sistema</li>
+                                <li>Casos de uso detallados</li>
+                                <li>Mockups de interfaces principales</li>
+                                <li>Documento de arquitectura técnica</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>16/09/25</td>
+                    <td>20/09/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 4</td>
+                    <td><strong>Equipo Completo</strong><br><small>Validación Conjunta</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Sesión de validación con propietarios del negocio<br>
+                        • Diseño detallado de la base de datos PostgreSQL<br>
+                        • Refinamiento de historias de usuario<br>
+                        • Planificación detallada de sprints de desarrollo<br>
+                        • Configuración del entorno de desarrollo<br>
+                        • Establecimiento de estándares de codificación
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Documento de validación de requisitos</li>
+                                <li>Modelo de base de datos PostgreSQL</li>
+                                <li>Scripts de creación de BD</li>
+                                <li>Backlog refinado y priorizado</li>
+                                <li>Entorno de desarrollo configurado</li>
+                                <li>Estándares de codificación Java</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>23/09/25</td>
+                    <td>27/09/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+
+                <!-- FASE 2: DESARROLLO Y PRUEBAS -->
+                <tr class="phase-header">
+                    <td rowspan="5"><strong>FASE 2:<br>DESARROLLO Y PRUEBAS</strong><br><small>Semanas 5-9</small></td>
+                    <td class="sprint-cell">Sprint 5</td>
+                    <td><strong>Alonso David</strong><br><small>Backend Developer</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Implementación del módulo central de inventarios<br>
+                        • Desarrollo de clases de entidad (Producto, Categoria, etc.)<br>
+                        • Implementación de DAO y conexión PostgreSQL<br>
+                        • Operaciones CRUD básicas para productos<br>
+                        • Pruebas unitarias del backend<br>
+                        • Integración con base de datos
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Módulo de gestión de productos funcionando</li>
+                                <li>Clases de entidad Java implementadas</li>
+                                <li>DAO y conexión a PostgreSQL</li>
+                                <li>Suite de pruebas unitarias (JUnit)</li>
+                                <li>Documentación JavaDoc del backend</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>30/09/25</td>
+                    <td>04/10/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 6</td>
+                    <td><strong>Julián Martínez</strong><br><small>Frontend Developer</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Desarrollo de interfaces de usuario en Java Swing<br>
+                        • Implementación de formularios CRUD<br>
+                        • Diseño de ventanas principales del sistema<br>
+                        • Integración frontend-backend<br>
+                        • Implementación de validaciones de entrada<br>
+                        • Pruebas de usabilidad básicas
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Interfaces gráficas principales</li>
+                                <li>Formularios CRUD funcionales</li>
+                                <li>Sistema de navegación implementado</li>
+                                <li>Validaciones de entrada de datos</li>
+                                <li>Reportes de pruebas de usabilidad</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>07/10/25</td>
+                    <td>11/10/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 7</td>
+                    <td><strong>Uriel Díaz</strong><br><small>QA & Features</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Desarrollo de módulo de reportes avanzados<br>
+                        • Implementación de sistema de alertas de stock<br>
+                        • Desarrollo de funcionalidades de productos perecederos<br>
+                        • Creación de alertas por fecha de vencimiento<br>
+                        • Implementación de reportes de rotación FIFO<br>
+                        • Suite completa de pruebas unitarias e integración
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Módulo de reportes implementado</li>
+                                <li>Sistema de alertas automáticas</li>
+                                <li>Gestión de productos perecederos</li>
+                                <li>Reportes de vencimientos</li>
+                                <li>Pruebas unitarias completas</li>
+                                <li>Documentación de testing</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>14/10/25</td>
+                    <td>18/10/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 8</td>
+                    <td><strong>Equipo Completo</strong><br><small>Integración</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Pruebas de integración Java-PostgreSQL completas<br>
+                        • Testing de rendimiento y carga de datos<br>
+                        • Corrección de errores y bugs identificados<br>
+                        • Optimización de consultas SQL<br>
+                        • Refactoring de código según estándares XP<br>
+                        • Validación con datos reales del minisúper
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Sistema completamente integrado</li>
+                                <li>Reporte de pruebas de integración</li>
+                                <li>Bugs corregidos y documentados</li>
+                                <li>Consultas SQL optimizadas</li>
+                                <li>Código refactorizado</li>
+                                <li>Pruebas con datos reales</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>21/10/25</td>
+                    <td>25/10/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 9</td>
+                    <td><strong>Alonso David</strong><br><small>Optimización</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Pruebas exhaustivas del sistema completo<br>
+                        • Optimización de rendimiento de la aplicación<br>
+                        • Tuning de base de datos PostgreSQL<br>
+                        • Implementación de índices y vistas optimizadas<br>
+                        • Testing de estrés y volumen de datos<br>
+                        • Preparación para fase de despliegue
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Sistema completamente probado</li>
+                                <li>Rendimiento optimizado</li>
+                                <li>Base de datos tuneada</li>
+                                <li>Índices y vistas implementadas</li>
+                                <li>Reportes de testing de estrés</li>
+                                <li>Sistema listo para despliegue</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>28/10/25</td>
+                    <td>01/11/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+
+                <!-- FASE 3: IMPLEMENTACIÓN Y DOCUMENTACIÓN -->
+                <tr class="phase-header">
+                    <td rowspan="4"><strong>FASE 3:<br>IMPLEMENTACIÓN Y DOCUMENTACIÓN</strong><br><small>Semanas 10-13</small></td>
+                    <td class="sprint-cell">Sprint 10</td>
+                    <td><strong>Julián Martínez</strong><br><small>Deployment Lead</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Preparación para despliegue en el Minisúper La Unión<br>
+                        • Pruebas de aceptación del usuario
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Sistema preparado para despliegue</li>
+                                <li>Base de datos configurada</li>
+                                <li>Pruebas de aceptación completadas</li>
+                                <li>Manual de Usuario e instalación/li>
+                                <li>Documentación de despliegue</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>04/11/25</td>
+                    <td>08/11/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 11</td>
+                    <td><strong>Uriel Díaz</strong><br><small>Training Lead</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Integración final del sistema completo<br>
+                        • Optimización de rendimiento y consultas<br>
+                        • Pruebas de estrés y volumen de datos<br>
+                        • Corrección de bugs finales<br>
+                        • Validación de todos los módulos
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Sistema completamente integrado</li>
+                                <li>Rendimiento optimizado</li>
+                                <li>Reporte de pruebas de estrés</li>
+                                <li>Bugs finales corregidos</li>
+                                <li>Versión final del sistema</li>
+                                <li>Validación completa de módulos</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>11/11/25</td>
+                    <td>15/11/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 12</td>
+                    <td><strong>Equipo Completo</strong><br><small>Documentation</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Finalización de documentación técnica completa<br>
+                        • Elaboración de manual de administrador<br>
+                        • Documentación de arquitectura y decisiones técnicas<br>
+                        • Creación de guías de mantenimiento<br>
+                        • Pruebas finales de todos los módulos<br>
+                        • Preparación de materiales de presentación
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Documentación técnica completa</li>
+                                <li>Manual de administrador</li>
+                                <li>Documento de arquitectura final</li>
+                                <li>Guías de mantenimiento</li>
+                                <li>Reporte de pruebas finales</li>
+                                <li>Presentación ejecutiva</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>18/11/25</td>
+                    <td>22/11/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                
+                <tr>
+                    <td class="sprint-cell">Sprint 13</td>
+                    <td><strong>Equipo Completo</strong><br><small>Project Closure</small></td>
+                    <td>
+                        <strong>Actividades principales:</strong><br>
+                        • Revisiones finales del sistema y documentación<br>
+                        • Entrega formal del proyecto al cliente<br>
+                        • Lecciones aprendidas y mejores prácticas<br>
+                        • Cierre formal del proyecto
+                    </td>
+                    <td>
+                        <div class="deliverables-list">
+                            <ul>
+                                <li>Proyecto entregado formalmente</li>
+                                <li>Presentación final completada</li>
+                                <li>Evaluación post-implementación</li>
+                                <li>Documento de lecciones aprendidas</li>
+                                <li>Acta de cierre de proyecto</li>
+                                <li>Informe ejecutivo final</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>25/11/25</td>
+                    <td>29/11/25</td>
+                    <td>5</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="timeline-container">
+        <div class="timeline-header">Cronograma Visual por Hitos Principales</div>
+        <div class="timeline">
+            <div class="timeline-item" style="background: #d4edda;">
+                <div class="timeline-dot" style="background: #28a745;"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">02-06 Septiembre 2025</div>
+                    <div class="timeline-title">✓ Hito 1: Análisis Inicial Completado</div>
+                    <div class="timeline-description">Recopilación de requisitos, entrevistas con stakeholders y análisis del sistema actual finalizado exitosamente.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" style="background: #fff3cd;">
+                <div class="timeline-dot" style="background: #ffc107;"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">09-13 Septiembre 2025</div>
+                    <div class="timeline-title">🔄 Hito 2: Especificación de Requisitos (En Proceso)</div>
+                    <div class="timeline-description">Análisis funcional y técnico, selección de tecnologías Java/PostgreSQL en curso.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">16-27 Septiembre 2025</div>
+                    <div class="timeline-title">Hito 3: Diseño y Arquitectura</div>
+                    <div class="timeline-description">Definición de historias de usuario, arquitectura del sistema y diseño de base de datos.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">30 Sep - 25 Oct 2025</div>
+                    <div class="timeline-title">Hito 4: Desarrollo del Sistema</div>
+                    <div class="timeline-description">Implementación completa del sistema de inventarios con todas sus funcionalidades.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">28 Oct - 08 Nov 2025</div>
+                    <div class="timeline-title">Hito 5: Testing y Despliegue</div>
+                    <div class="timeline-description">Pruebas exhaustivas, optimización y despliegue en el entorno de producción.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">11-29 Noviembre 2025</div>
+                    <div class="timeline-title">Hito 6: Implementación y Cierre</div>
+                    <div class="timeline-description">Capacitación, documentación final y cierre formal del proyecto.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            <h3>📋 Metodología Extreme Programming (XP) - Detalles de Implementación</h3>
+            <span>▼</span>
+        </div>
+        <div class="accordion-content">
+            <div class="methodology-detail">
+                <h4>Valores Fundamentales de XP en el Proyecto:</h4>
+                <ul>
+                    <li><strong>Comunicación:</strong> Reuniones semanales con el cliente, daily standups del equipo, feedback continuo</li>
+                    <li><strong>Simplicidad:</strong> Desarrollo de la solución más simple que funcione, evitar over-engineering</li>
+                    <li><strong>Retroalimentación:</strong> Entrega de funcionalidades cada sprint, testing continuo, validación constante</li>
+                    <li><strong>Coraje:</strong> Refactoring cuando sea necesario, cambios en arquitectura si mejoran el sistema</li>
+                    <li><strong>Respeto:</strong> Reconocimiento del trabajo de cada miembro, respeto a los tiempos del cliente</li>
+                </ul>
+            </div>
+            
+            <div class="methodology-detail">
+                <h4>Prácticas XP Aplicadas:</h4>
+                <ul>
+                    <li><strong>Planning Game:</strong> Planificación colaborativa con el cliente al inicio de cada sprint</li>
+                    <li><strong>Small Releases:</strong> Entrega de funcionalidades incrementales cada semana</li>
+                    <li><strong>System Metaphor:</strong> "Sistema nervioso del negocio" - metáfora para explicar la arquitectura</li>
+                    <li><strong>Simple Design:</strong> Diseño que satisface los requisitos actuales sin complejidad innecesaria</li>
+                    <li><strong>Test Driven Development:</strong> Escribir pruebas antes que el código de producción</li>
+                    <li><strong>Refactoring:</strong> Mejora continua del código manteniendo la funcionalidad</li>
+                    <li><strong>Pair Programming:</strong> Programación en parejas para mejorar la calidad del código</li>
+                    <li><strong>Collective Code Ownership:</strong> Todo el equipo puede modificar cualquier parte del código</li>
+                    <li><strong>Continuous Integration:</strong> Integración frecuente del código en el repositorio principal</li>
+                    <li><strong>40-hour Week:</strong> Trabajo sostenible sin horas extras excesivas</li>
+                    <li><strong>On-site Customer:</strong> Acceso directo y frecuente a los propietarios del minisúper</li>
+                    <li><strong>Coding Standards:</strong> Estándares de codificación Java consistentes en todo el equipo</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="risk-matrix">
+        <div class="risk-item risk-high">
+            <h4>🔴 Riesgos Altos</h4>
+            <ul>
+                <li><strong>Disponibilidad limitada del cliente:</strong> Horarios de trabajo del minisúper pueden limitar las reuniones</li>
+                <li><strong>Resistencia al cambio:</strong> Empleados acostumbrados al sistema manual pueden resistirse</li>
+                <li><strong>Problemas técnicos críticos:</strong> Fallas de hardware o corrupción de datos</li>
+            </ul>
+            <p><strong>Mitigación:</strong> Reuniones flexibles, capacitación gradual, respaldos frecuentes</p>
+        </div>
+        
+        <div class="risk-item risk-medium">
+            <h4>🟡 Riesgos Medios</h4>
+            <ul>
+                <li><strong>Cambios en requisitos:</strong> Modificaciones en las necesidades del negocio</li>
+                <li><strong>Limitaciones académicas:</strong> Otras materias y exámenes del equipo</li>
+                <li><strong>Presupuesto restringido:</strong> Gastos no planificados en hardware/software</li>
+            </ul>
+            <p><strong>Mitigación:</strong> Metodología XP adaptable, planificación académica, uso de software libre</p>
+        </div>
+        
+        <div class="risk-item risk-low">
+            <h4>🟢 Riesgos Bajos</h4>
+            <ul>
+                <li><strong>Problemas menores de integración:</strong> Incompatibilidades técnicas menores</li>
+                <li><strong>Retrasos leves en entregas:</strong> Demoras de 1-2 días en sprints</li>
+                <li><strong>Curva de aprendizaje:</strong> Tiempo de adaptación a nuevas tecnologías</li>
+            </ul>
+            <p><strong>Mitigación:</strong> Testing continuo, buffers de tiempo, capacitación previa</p>
+        </div>
+    </div>
+
+    <div class="budget-breakdown">
+        <h2 style="color: #667eea; text-align: center; margin-bottom: 20px;">Desglose Presupuestario Detallado</h2>
+        
+        <div class="budget-item">
+            <span><strong>Software y Licencias</strong></span>
+            <span>$0 - $5,400 MXN</span>
+        </div>
+        <div style="font-size: 12px; color: #666; margin-left: 20px; margin-bottom: 10px;">
+            • Herramientas gratuitas: NetBeans, PostgreSQL, Git (Recomendado)<br>
+            • Alternativa comercial: IntelliJ IDEA, licencias adicionales
+        </div>
+        
+        <div class="budget-item">
+            <span><strong>Hardware y Equipamiento</strong></span>
+            <span>$0 - $14,400 MXN</span>
+        </div>
+        <div style="font-size: 12px; color: #666; margin-left: 20px; margin-bottom: 10px;">
+            • Uso de equipos existentes del instituto (Recomendado)<br>
+            • Actualización de hardware si es necesario: RAM adicional, SSD
+        </div>
+        
+        <div class="budget-item">
+            <span><strong>Investigación y Materiales</strong></span>
+            <span>$900 - $3,600 MXN</span>
+        </div>
+        <div style="font-size: 12px; color: #666; margin-left: 20px; margin-bottom: 10px;">
+            • Libros especializados en Java/PostgreSQL<br>
+            • Cursos en línea de metodologías ágiles<br>
+            • Acceso a bases de datos académicas (gratuito vía instituto)
+        </div>
+        
+        <div class="budget-item">
+            <span><strong>Gastos de Campo y Transporte</strong></span>
+            <span>$3,600 - $7,200 MXN</span>
+        </div>
+        <div style="font-size: 12px; color: #666; margin-left: 20px; margin-bottom: 10px;">
+            • Transporte a Minisúper La Unión (3 meses)<br>
+            • Viajes para entrevistas y validaciones<br>
+            • Gastos de implementación en sitio
+        </div>
+        
+        <div class="budget-item">
+            <span><strong>Documentación y Presentación</strong></span>
+            <span>$900 - $1,260 MXN</span>
+        </div>
+        <div style="font-size: 12px; color: #666; margin-left: 20px; margin-bottom: 10px;">
+            • Impresión de manuales y documentación<br>
+            • Materiales para presentación final<br>
+            • Encuadernación de entregables
+        </div>
+        
+        <div class="budget-item">
+            <span><strong>Contingencias y Varios</strong></span>
+            <span>$1,800 - $3,600 MXN</span>
+        </div>
+        <div style="font-size: 12px; color: #666; margin-left: 20px; margin-bottom: 10px;">
+            • Fondo de emergencia para imprevistos<br>
+            • Mejoras de conectividad a internet<br>
+            • Soluciones de respaldo y almacenamiento
+        </div>
+        
+        <div class="budget-item" style="border-top: 2px solid #667eea; margin-top: 15px;">
+            <span><strong>TOTAL ESTIMADO DEL PROYECTO</strong></span>
+            <span><strong>$7,200 - $35,460 MXN</strong></span>
+        </div>
+    </div>
+
+    <div class="communications-plan">
+        <h2 style="color: #667eea; text-align: center; margin-bottom: 20px;">Plan de Comunicaciones</h2>
+        
+        <div class="communication-item">
+            <h4>Comunicación con el Cliente (Minisúper La Unión)</h4>
+            <ul>
+                <li><strong>Frecuencia:</strong> Reuniones semanales de validación (viernes 4:00 PM)</li>
+                <li><strong>Modalidad:</strong> Presencial en el minisúper</li>
+                <li><strong>Duración:</strong> 1-2 horas por reunión</li>
+                <li><strong>Participantes:</strong> Propietarios, equipo completo de desarrollo</li>
+                <li><strong>Entregables:</strong> Demos funcionales, actas de reunión, validación de historias</li>
+            </ul>
+        </div>
+        
+        <div class="communication-item">
+            <h4>Comunicación Interna del Equipo</h4>
+            <ul>
+                <li><strong>Daily Standups:</strong> Lunes, miércoles, viernes 8:00 AM (15 minutos)</li>
+                <li><strong>Sprint Planning:</strong> Lunes de cada semana 9:00 AM (2 horas)</li>
+                <li><strong>Sprint Review:</strong> Viernes de cada semana 2:00 PM (1 hora)</li>
+                <li><strong>Retrospectiva:</strong> Viernes de cada semana 3:00 PM (30 minutos)</li>
+                <li><strong>Herramientas:</strong> WhatsApp para comunicación rápida, Google Meet para reuniones virtuales</li>
+            </ul>
+        </div>
+        
+        <div class="communication-item">
+            <h4>Comunicación Académica</h4>
+            <ul>
+                <li><strong>Asesorías con el Profesor:</strong> Martes y jueves 11:00 AM</li>
+                <li><strong>Reportes de Avance:</strong> Entrega quincenal de reportes escritos</li>
+                <li><strong>Presentaciones Parciales:</strong> Cada fin de fase (3 presentaciones)</li>
+                <li><strong>Presentación Final:</strong> Primera semana de diciembre 2025</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Criterios de Éxito del Proyecto</h3>
+            <ul>
+                <li><strong>Funcionalidad:</strong> Sistema operativo con todas las funcionalidades requeridas</li>
+                <li><strong>Usabilidad:</strong> 90% de usuarios pueden usar el sistema sin ayuda después de capacitación</li>
+                <li><strong>Rendimiento:</strong> Tiempos de respuesta < 3 segundos para consultas complejas</li>
+                <li><strong>Confiabilidad:</strong> 99% de disponibilidad durante horas de operación</li>
+                <li><strong>Adopción:</strong> Migración completa del sistema manual al automatizado</li>
+                <li><strong>Satisfacción:</strong> Calificación ≥ 8/10 en encuestas de satisfacción del cliente</li>
+            </ul>
+        </div>
+        
+        <div class="info-card">
+            <h3>Métricas de Seguimiento</h3>
+            <ul>
+                <li><strong>Progreso de Desarrollo:</strong> Historias de usuario completadas vs planificadas</li>
+                <li><strong>Calidad:</strong> Número de bugs por módulo, cobertura de pruebas</li>
+                <li><strong>Cronograma:</strong> Adherencia a fechas de entrega por sprint</li>
+                <li><strong>Presupuesto:</strong> Gastos reales vs presupuesto planificado</li>
+                <li><strong>Satisfacción del Cliente:</strong> Feedback semanal cuantificado</li>
+                <li><strong>Participación del Equipo:</strong> Asistencia a reuniones, contribuciones de código</li>
+            </ul>
+        </div>
+        
+        <div class="info-card">
+            <h3>Entregables Principales</h3>
+            <ul>
+                <li><strong>Sistema Funcional:</strong> Aplicación Java completa con interfaz gráfica</li>
+                <li><strong>Base de Datos:</strong> PostgreSQL con datos migrados y optimizada</li>
+                <li><strong>Documentación Técnica:</strong> Arquitectura, APIs, manual de instalación</li>
+                <li><strong>Documentación de Usuario:</strong> Manual de usuario, guías de referencia</li>
+                <li><strong>Material de Capacitación:</strong> Videos, tutoriales, ejercicios prácticos</li>
+                <li><strong>Código Fuente:</strong> Repositorio Git completo con historial de versiones</li>
+            </ul>
+        </div>
+        
+        <div class="info-card">
+            <h3>Plan de Mantenimiento Post-Proyecto</h3>
+            <ul>
+                <li><strong>Soporte Inicial:</strong> 30 días de soporte gratuito post-implementación</li>
+                <li><strong>Actualizaciones Menores:</strong> Corrección de bugs durante el primer semestre</li>
+                <li><strong>Capacitación Adicional:</strong> Sesiones de refuerzo según necesidad</li>
+                <li><strong>Documentación de Incidentes:</strong> Registro y solución de problemas</li>
+                <li><strong>Evaluación Trimestral:</strong> Revisión del impacto y beneficios obtenidos</li>
+                <li><strong>Mejoras Futuras:</strong> Roadmap de funcionalidades adicionales</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-section">
+        <h2 style="color: #667eea; margin-bottom: 20px;">Consideraciones Finales y Próximos Pasos</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div>
+                <h4>Factores Críticos de Éxito:</h4>
+                <ul>
+                    <li>Comunicación constante y efectiva con el cliente</li>
+                    <li>Adherencia estricta a la metodología XP</li>
+                    <li>Colaboración activa de los propietarios del minisúper</li>
+                    <li>Flexibilidad para adaptarse a cambios en requisitos</li>
+                    <li>Enfoque en la simplicidad y funcionalidad práctica</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>Próximos Pasos Inmediatos:</h4>
+                <ul>
+                    <li>Completar el Sprint 2 (Análisis de requisitos) - En curso</li>
+                    <li>Validar especificaciones con el cliente</li>
+                    <li>Configurar el entorno de desarrollo Java/PostgreSQL</li>
+                    <li>Establecer repositorio Git y estándares de codificación</li>
+                    <li>Preparar el Sprint 3 (Historias de usuario y arquitectura)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
+            <p><strong>Nota importante del equipo:</strong> Este plan de trabajo ha sido elaborado siguiendo las mejores prácticas de gestión de proyectos de software y la metodología Extreme Programming. La flexibilidad y adaptabilidad son fundamentales para el éxito del proyecto, especialmente considerando que trabajamos con un cliente real (Minisúper La Unión) cuyas necesidades pueden evolucionar durante el desarrollo.</p>
+            
+            <p><strong>Compromiso del equipo:</strong> Nos comprometemos a mantener la calidad académica esperada en el Instituto Tecnológico de Oaxaca, así como a entregar una solución tecnológica que genere valor real para nuestro cliente y sirva como ejemplo de aplicación práctica de conocimientos teóricos en un entorno empresarial real.</p>
+        </div>
+    </div>
+
+    <!-- Sección adicional: Cronograma detallado por semanas -->
+    <div class="table-container" style="margin-top: 30px;">
+        <div class="table-header">
+            <h2>Vista Semanal Detallada - Septiembre a Noviembre 2025</h2>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 15%">Semana</th>
+                    <th style="width: 25%">Fechas</th>
+                    <th style="width: 35%">Actividades Principales</th>
+                    <th style="width: 15%">Horas Estimadas</th>
+                    <th style="width: 10%">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Semana 1</strong></td>
+                    <td>02-06 Septiembre</td>
+                    <td>Inicio del proyecto, entrevistas iniciales, análisis del problema</td>
+                    <td>40 horas equipo</td>
+                    <td><span class="status completado">COMPLETADO</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 2</strong></td>
+                    <td>09-13 Septiembre</td>
+                    <td>Análisis de requisitos, selección tecnológica, validación inicial</td>
+                    <td>40 horas equipo</td>
+                    <td><span class="status proceso">EN PROCESO</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 3</strong></td>
+                    <td>16-20 Septiembre</td>
+                    <td>Historias de usuario, diseño arquitectónico, mockups</td>
+                    <td>40 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 4</strong></td>
+                    <td>23-27 Septiembre</td>
+                    <td>Validación con cliente, diseño de BD, configuración entorno</td>
+                    <td>40 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 5</strong></td>
+                    <td>30 Sep - 04 Oct</td>
+                    <td>Desarrollo backend: entidades, DAO, conexión PostgreSQL</td>
+                    <td>45 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 6</strong></td>
+                    <td>07-11 Octubre</td>
+                    <td>Desarrollo frontend: interfaces Swing, formularios CRUD</td>
+                    <td>45 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 7</strong></td>
+                    <td>14-18 Octubre</td>
+                    <td>Funcionalidades avanzadas: reportes, alertas, gestión perecederos</td>
+                    <td>45 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 8</strong></td>
+                    <td>21-25 Octubre</td>
+                    <td>Integración completa, testing, corrección de bugs</td>
+                    <td>50 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 9</strong></td>
+                    <td>28 Oct - 01 Nov</td>
+                    <td>Optimización, testing de estrés, preparación despliegue</td>
+                    <td>45 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 10</strong></td>
+                    <td>04-08 Noviembre</td>
+                    <td>Preparación para despliegue, pruebas de aceptación del usuario</td>
+                    <td>40 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 11</strong></td>
+                    <td>11-15 Noviembre</td>
+                    <td>Integración final, optimización de rendimiento, pruebas de estrés</td>
+                    <td>45 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 12</strong></td>
+                    <td>18-22 Noviembre</td>
+                    <td>Documentación técnica final, manuales, pruebas finales</td>
+                    <td>40 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Semana 13</strong></td>
+                    <td>25-29 Noviembre</td>
+                    <td>Entrega formal, presentación, evaluación, cierre proyecto</td>
+                    <td>35 horas equipo</td>
+                    <td><span class="status pendiente">PENDIENTE</span></td>
+                </tr>
+                <tr style="background: #f0f8ff; font-weight: bold;">
+                    <td colspan="3"><strong>TOTAL HORAS ESTIMADAS DEL PROYECTO</strong></td>
+                    <td><strong>560 horas</strong></td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Matriz de responsabilidades detallada -->
+    <div class="table-container" style="margin-top: 30px;">
+        <div class="table-header">
+            <h2>Matriz de Responsabilidades (RACI)</h2>
+            <p>R=Responsable, A=Aprobador, C=Consultado, I=Informado</p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40%">Actividad</th>
+                    <th style="width: 15%">Alonso David</th>
+                    <th style="width: 15%">Julián Martínez</th>
+                    <th style="width: 15%">Uriel Díaz</th>
+                    <th style="width: 15%">Cliente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Recopilación de requisitos iniciales</td>
+                    <td style="background: #e8f5e8;"><strong>R</strong></td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #ffeaa7;"><strong>A</strong></td>
+                </tr>
+                <tr>
+                    <td>Análisis técnico y selección de tecnologías</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #e8f5e8;"><strong>R</strong></td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #f8d7da;">I</td>
+                </tr>
+                <tr>
+                    <td>Diseño de arquitectura del sistema</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #e8f5e8;"><strong>R</strong></td>
+                    <td style="background: #fff3cd;">C</td>
+                </tr>
+                <tr>
+                    <td>Desarrollo del backend (Java/PostgreSQL)</td>
+                    <td style="background: #e8f5e8;"><strong>R</strong></td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #f8d7da;">I</td>
+                </tr>
+                <tr>
+                    <td>Desarrollo del frontend (Interfaces)</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #e8f5e8;"><strong>R</strong></td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #fff3cd;">C</td>
+                </tr>
+                <tr>
+                    <td>Testing y aseguramiento de calidad</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #e8f5e8;"><strong>R</strong></td>
+                    <td style="background: #f8d7da;">I</td>
+                </tr>
+                <tr>
+                    <td>Despliegue y configuración en sitio</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #e8f5e8;"><strong>R</strong></td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #ffeaa7;"><strong>A</strong></td>
+                </tr>
+                <tr>
+                    <td>Capacitación del personal</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #e8f5e8;"><strong>R</strong></td>
+                    <td style="background: #fff3cd;">C</td>
+                </tr>
+                <tr>
+                    <td>Documentación técnica y de usuario</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #e8f5e8;"><strong>R</strong></td>
+                    <td style="background: #fff3cd;">C</td>
+                </tr>
+                <tr>
+                    <td>Validación y aceptación del sistema</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #fff3cd;">C</td>
+                    <td style="background: #ffeaa7;"><strong>A</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Plan de calidad -->
+    <div class="accordion" style="margin-top: 30px;">
+        <div class="accordion-header">
+            <h3>🎯 Plan de Aseguramiento de Calidad</h3>
+            <span>▼</span>
+        </div>
+        <div class="accordion-content">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="methodology-detail">
+                    <h4>Estándares de Codificación:</h4>
+                    <ul>
+                        <li><strong>Nomenclatura Java:</strong> CamelCase para clases, camelCase para métodos</li>
+                        <li><strong>Comentarios:</strong> Javadoc para todas las clases públicas</li>
+                        <li><strong>Estructura:</strong> Arquitectura en capas (Presentación, Lógica, Datos)</li>
+                        <li><strong>Versionado:</strong> Git Flow con ramas feature/develop/master</li>
+                        <li><strong>Code Review:</strong> Revisión por pares antes de merge</li>
+                    </ul>
+                </div>
+                
+                <div class="methodology-detail">
+                    <h4>Estrategia de Testing:</h4>
+                    <ul>
+                        <li><strong>Pruebas Unitarias:</strong> JUnit 5, cobertura mínima 80%</li>
+                        <li><strong>Pruebas de Integración:</strong> Testing de conexión BD</li>
+                        <li><strong>Pruebas de Sistema:</strong> Escenarios end-to-end</li>
+                        <li><strong>Pruebas de Usabilidad:</strong> Con usuarios reales del minisúper</li>
+                        <li><strong>Pruebas de Rendimiento:</strong> Testing con volúmenes reales de datos</li>
+                    </ul>
+                </div>
+                
+                <div class="methodology-detail">
+                    <h4>Control de Versiones y Configuración:</h4>
+                    <ul>
+                        <li><strong>Repositorio:</strong> GitHub con ramas protegidas</li>
+                        <li><strong>Integración Continua:</strong> GitHub Actions para testing automático</li>
+                        <li><strong>Gestión de Builds:</strong> Maven para gestión de dependencias</li>
+                        <li><strong>Ambiente de Desarrollo:</strong> Docker para consistencia</li>
+                        <li><strong>Respaldos:</strong> Backup diario del repositorio y BD</li>
+                    </ul>
+                </div>
+                
+                <div class="methodology-detail">
+                    <h4>Métricas de Calidad:</h4>
+                    <ul>
+                        <li><strong>Defectos por Módulo:</strong> Máximo 2 bugs críticos por sprint</li>
+                        <li><strong>Tiempo de Respuesta:</strong> < 3 segundos para consultas</li>
+                        <li><strong>Disponibilidad:</strong> 99% uptime durante operación</li>
+                        <li><strong>Usabilidad:</strong> 90% de tareas completadas sin ayuda</li>
+                        <li><strong>Mantenibilidad:</strong> Código autodocumentado y modular</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Glosario de términos -->
+    <div class="accordion" style="margin-top: 20px;">
+        <div class="accordion-header">
+            <h3>📚 Glosario de Términos Técnicos</h3>
+            <span>▼</span>
+        </div>
+        <div class="accordion-content">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="methodology-detail">
+                    <h4>Términos de Inventarios:</h4>
+                    <ul>
+                        <li><strong>Stock Mínimo:</strong> Cantidad mínima de producto que debe mantenerse</li>
+                        <li><strong>FIFO:</strong> Primero en Entrar, Primero en Salir (productos perecederos)</li>
+                        <li><strong>Rotación de Inventario:</strong> Frecuencia con que se renueva el stock</li>
+                        <li><strong>Punto de Reorden:</strong> Nivel de stock que activa la recompra</li>
+                        <li><strong>Merma:</strong> Pérdida de productos por daño, robo o vencimiento</li>
+                    </ul>
+                </div>
+                
+                <div class="methodology-detail">
+                    <h4>Términos Técnicos:</h4>
+                    <ul>
+                        <li><strong>CRUD:</strong> Create, Read, Update, Delete (operaciones básicas)</li>
+                        <li><strong>DAO:</strong> Data Access Object (patrón de acceso a datos)</li>
+                        <li><strong>ORM:</strong> Object-Relational Mapping (mapeo objeto-relacional)</li>
+                        <li><strong>API:</strong> Application Programming Interface</li>
+                        <li><strong>MVC:</strong> Model-View-Controller (patrón arquitectónico)</li>
+                    </ul>
+                </div>
+                
+                <div class="methodology-detail">
+                    <h4>Términos de XP:</h4>
+                    <ul>
+                        <li><strong>Sprint:</strong> Iteración de desarrollo de 1 semana</li>
+                        <li><strong>User Story:</strong> Historia de usuario con formato específico</li>
+                        <li><strong>Refactoring:</strong> Mejora del código sin cambiar funcionalidad</li>
+                        <li><strong>TDD:</strong> Test Driven Development (desarrollo guiado por pruebas)</li>
+                        <li><strong>Pair Programming:</strong> Programación en parejas</li>
+                    </ul>
+                </div>
+                
+                <div class="methodology-detail">
+                    <h4>Acrónimos del Proyecto:</h4>
+                    <ul>
+                        <li><strong>ITO:</strong> Instituto Tecnológico de Oaxaca</li>
+                        <li><strong>SGILU:</strong> Sistema de Gestión de Inventarios La Unión</li>
+                        <li><strong>UAT:</strong> User Acceptance Testing</li>
+                        <li><strong>BD:</strong> Base de Datos</li>
+                        <li><strong>GUI:</strong> Graphical User Interface</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Información de contacto y firmas -->
+    <div class="footer-section" style="margin-top: 30px;">
+        <h2 style="color: #667eea; margin-bottom: 20px;">Información de Contacto del Equipo</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+            <div style="text-align: center; padding: 15px; background: #f8f9ff; border-radius: 8px;">
+                <h4>Alonso David Almaraz Vásquez</h4>
+                <p><strong>Líder de Proyecto</strong></p>
+                <p>Email: alonso.almaraz@oaxaca.tecnm.mx</p>
+                <p>Teléfono: [Número de contacto]</p>
+                <div style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px;">
+                    <small>Firma: _________________________</small>
+                </div>
+            </div>
+            
+            <div style="text-align: center; padding: 15px; background: #f8f9ff; border-radius: 8px;">
+                <h4>Julián Martínez Guzmán</h4>
+                <p><strong>Desarrollador Frontend</strong></p>
+                <p>Email: julian.martinez@oaxaca.tecnm.mx</p>
+                <p>Teléfono: [Número de contacto]</p>
+                <div style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px;">
+                    <small>Firma: _________________________</small>
+                </div>
+            </div>
+            
+            <div style="text-align: center; padding: 15px; background: #f8f9ff; border-radius: 8px;">
+                <h4>Uriel Díaz Zarate</h4>
+                <p><strong>Analista de Calidad</strong></p>
+                <p>Email: uriel.diaz@oaxaca.tecnm.mx</p>
+                <p>Teléfono: [Número de contacto]</p>
+                <div style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px;">
+                    <small>Firma: _________________________</small>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; padding: 20px; background: #e3f2fd; border-radius: 8px;">
+            <h4>Aprobaciones</h4>
+            <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                <div>
+                    <p><strong>Profesora Supervisora</strong></p>
+                    <p>Otilia Pérez López</p>
+                    <div style="margin-top: 15px;">
+                        <small>Firma: _________________________</small><br>
+                        <small>Fecha: _________________________</small>
+                    </div>
+                </div>
+                
+                <div>
+                    <p><strong>Cliente</strong></p>
+                    <p>Propietarios Minisúper La Unión</p>
+                    <div style="margin-top: 15px;">
+                        <small>Firma: _________________________</small><br>
+                        <small>Fecha: _________________________</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px; padding: 15px; background: #f0f8ff; border-radius: 8px;">
+            <p><strong>Plan de Trabajo elaborado el:</strong> 13 de septiembre de 2025</p>
+            <p><strong>Versión:</strong> 1.0</p>
+            <p><strong>Próxima revisión:</strong> 27 de septiembre de 2025</p>
+            <p><em>Instituto Tecnológico de Oaxaca - Ingeniería en Sistemas Computacionales</em></p>
+        </div>
+    </div>
+</body>
+</html>
